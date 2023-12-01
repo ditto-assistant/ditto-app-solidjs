@@ -1,6 +1,7 @@
 import { useRouteData } from "solid-start";
 import { createServerData$ } from "solid-start/server";
 import { Show } from "solid-js";
+import { SolidMarkdown } from "solid-markdown";
 
 export function routeData() {
     return createServerData$(async () => {
@@ -14,8 +15,8 @@ export function routeData() {
 const Conversations = () => {
     const rd = useRouteData<typeof routeData>();
     return <>
-        <Show when={rd()}>
-            {(rd) => <h2>{JSON.stringify(rd())}</h2>}
+        <Show when={rd()[2]}>
+            {(rd0) => <SolidMarkdown>{rd0()[3]}</SolidMarkdown>}
         </Show>
         <p>Hello World </p>
     </>
