@@ -14,7 +14,6 @@ export default function UsersLayout() {
                                 <>
                                     <Show when={user().image}>{(image) => <img src={image()} />}</Show>
                                     <span>Hey there {user().name}! You are signed in!</span>
-                                    <p>Your email is: {user().email}</p>
                                 </>
                             )}
                         </Show>
