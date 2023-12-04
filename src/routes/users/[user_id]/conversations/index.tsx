@@ -1,4 +1,4 @@
-import { useRouteData } from "solid-start";
+import { useParams, useRouteData } from "solid-start";
 import { createServerData$ } from "solid-start/server";
 import { For, Show } from "solid-js";
 import { SolidMarkdown } from "solid-markdown";
@@ -26,8 +26,11 @@ class ChatMessage {
 
 export function routeData() {
     return createServerData$(async () => {
-        const rsp = await fetch('http://localhost:32032/users/1/conversations/1/chats?order=asc')
-        const jason = await rsp.json() as ChatMsgJson[]
+        const params = useParams();
+        // const url = `http://localhost:32032/users/${params.user_id}/conversations/${params.conv_id}/chats?order=asc&limit=20`
+        const url = `http://localhost:32032/users/${params.user_id}/conversations/1/chats?order=asc&limit=20`
+        const rsp = await fetch(url)
+        const jason = await rsp.json()
         // console.log(jason)
         return jason
     })

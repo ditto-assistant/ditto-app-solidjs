@@ -1,6 +1,11 @@
 import { SessionContext, signIn } from "@solid-mediakit/auth/client";
 import { Show, useContext } from "solid-js";
 import { Navigate, } from "solid-start";
+import { User } from "@auth/core/types";
+
+export function userId(user: User) {
+    return user.email ? user.email : user.id;
+}
 
 export default function Home() {
     const session = useContext(SessionContext)
@@ -9,7 +14,7 @@ export default function Home() {
         <main>
             <h1>Home</h1>
             <Show
-                when={session?.()}
+                when={session?.()?.user}
                 fallback={
                     <>
                         <span>You are not signed in.</span>
@@ -17,8 +22,8 @@ export default function Home() {
                     </>
                 }
             >
-                {(sess) => (<>
-                    <Navigate href={`/users/${sess().user?.email?.replace(/[.@]/g, '-')}`} />
+                {(user) => (<>
+                    <Navigate href={`/users/${userId(user())}`} />
                 </>
                 )}
             </Show>
