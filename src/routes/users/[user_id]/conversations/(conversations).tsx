@@ -1,6 +1,6 @@
 
 import { createServerData$ } from "solid-start/server";
-import { A, useParams } from "solid-start";
+import { A, RouteDataArgs } from "solid-start";
 import { useRouteData } from "solid-start";
 import { Show } from "solid-js";
 import { For } from "solid-js";
@@ -22,15 +22,23 @@ class Conversation {
 
 }
 
-export function routeData() {
-    return createServerData$(async () => {
-        const params = useParams();
-        const url = `http://localhost:32032/users/${params.user_id}/conversations`
-        const rsp = await fetch(url)
-        const jason = await rsp.json() as ConversationJson[]
-        return jason
-        // return jason.map(c => new Conversation(c))
-    })
+export function routeData(props: RouteDataArgs) {
+    return createServerData$(
+        async (s) => {
+            const url = `http://localhost:32032/users/${s.user}/conversations`
+            const rsp = await fetch(url)
+            const jason = await rsp.json() as ConversationJson[]
+            return jason
+        },
+        {
+            key: () => {
+                return {
+                    user: props.params.user_id,
+                }
+
+            },
+        }
+    )
 }
 
 export default function Conversations() {
@@ -41,7 +49,7 @@ export default function Conversations() {
                 <For each={rd()}>
                     {(conv) =>
                         <div class="item-conv">
-                            <A href={`${conv[0]}/chats`}>{conv[1]}</A>
+                            <A href={`${conv[0]}/chats`}>{conv[1] ? conv[1] : "Untitled"}</A>
                             <p>Chat count: {conv[2]}</p>
                             <p>Created: {conv[3]}</p>
                             <p>Updated: {conv[4]}</p>
