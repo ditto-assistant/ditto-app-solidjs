@@ -16,8 +16,7 @@ class ChatMessage {
     }
 }
 
-
-export function routeData(props: RouteDataArgs) {
+export function routeData({ params }: RouteDataArgs) {
     return createServerData$(
         async (s) => {
             const url = `http://localhost:32032/users/${s.user}/conversations/${s.conv}/chats?order=asc&limit=20`
@@ -28,8 +27,8 @@ export function routeData(props: RouteDataArgs) {
         {
             key: () => {
                 return {
-                    user: props.params.user_id,
-                    conv: props.params.conv_id
+                    user: params.user_id,
+                    conv: params.conv_id
                 }
 
             },

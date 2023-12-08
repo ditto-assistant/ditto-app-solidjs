@@ -24,10 +24,10 @@ export default function Root() {
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Body>
-        <Suspense>
+        <A href="/">Home</A>
+        <Suspense fallback={<div>Loading...</div>}>
           <SessionProvider>
-            <ErrorBoundary>
-              <A href="/">Home</A>
+            <ErrorBoundary >
               <Routes>
                 <FileRoutes />
               </Routes>

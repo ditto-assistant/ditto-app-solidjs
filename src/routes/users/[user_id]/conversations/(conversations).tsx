@@ -4,7 +4,6 @@ import { A, RouteDataArgs } from "solid-start";
 import { useRouteData } from "solid-start";
 import { Show } from "solid-js";
 import { For } from "solid-js";
-import { SolidMarkdown } from "solid-markdown";
 
 
 type ConversationJson = [number, string, number, string, string]
@@ -22,7 +21,7 @@ class Conversation {
 
 }
 
-export function routeData(props: RouteDataArgs) {
+export function routeData({ params }: RouteDataArgs) {
     return createServerData$(
         async (s) => {
             const url = `http://localhost:32032/users/${s.user}/conversations`
@@ -33,7 +32,7 @@ export function routeData(props: RouteDataArgs) {
         {
             key: () => {
                 return {
-                    user: props.params.user_id,
+                    user: params.user_id,
                 }
 
             },
