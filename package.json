@@ -7,20 +7,20 @@
   },
   "type": "module",
   "devDependencies": {
-    "@types/node": "^18.17.5",
+    "@types/node": "^18.19.3",
     "esbuild": "^0.14.54",
-    "next-auth": "^4.23.1",
-    "postcss": "^8.4.28",
+    "next-auth": "^4.24.5",
+    "postcss": "^8.4.32",
     "solid-start-node": "^0.3.10",
     "typescript": "^4.9.5",
-    "vite": "^4.4.9"
+    "vite": "^4.5.1"
   },
   "dependencies": {
     "@auth/core": "latest",
     "@solid-mediakit/auth": "latest",
     "@solidjs/meta": "^0.29.1",
-    "@solidjs/router": "^0.8.3",
-    "solid-js": "^1.8.5",
+    "@solidjs/router": "^0.8.4",
+    "solid-js": "^1.8.7",
     "solid-markdown": "^2.0.0",
     "solid-start": "^0.3.10"
   },

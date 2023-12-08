@@ -1,16 +1,18 @@
 set dotenv-load
 
 dev: install
-    bun dev
+    pnpm dev
 
 dev-open: install
-    bun dev -- --open
+    pnpm dev -- --open
+
+run-prod: build start
 
 build: install
-    bun run build
+    pnpm run build
 
 start:
-    bun run start
+    pnpm run start
 
 install:
-    bun i
+    pnpm i
