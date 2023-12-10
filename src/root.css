@@ -45,6 +45,19 @@
   /* Align to the left */
 }
 
+.footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* Center buttons in the middle */
+  width: 100%;
+  /* Footer takes full width of its parent */
+  margin-top: 1rem;
+  /* Space between messages and footer */
+}
 
 
 

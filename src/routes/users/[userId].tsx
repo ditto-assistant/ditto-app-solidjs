@@ -22,7 +22,7 @@ export default function UsersLayout() {
                         <Show when={sess.user}>
                             {(user) => (
                                 <>
-                                    <Show when={user().email === params.user_id} fallback={fbIncorrectUser(user())}>
+                                    <Show when={user().email === params.userId} fallback={fbIncorrectUser(user())}>
                                         <Show when={user().image}>{(image) => <img src={image()} />}</Show>
                                         <span>Hey there {user().name}! You are signed in!</span>
                                     </Show>

@@ -27,12 +27,13 @@ export function routeData({ params }: RouteDataArgs) {
             const url = `http://localhost:32032/users/${s.user}/conversations`
             const rsp = await fetch(url)
             const jason = await rsp.json() as ConversationJson[]
+            console.log(jason)
             return jason
         },
         {
             key: () => {
                 return {
-                    user: params.user_id,
+                    user: params.userId,
                 }
 
             },
