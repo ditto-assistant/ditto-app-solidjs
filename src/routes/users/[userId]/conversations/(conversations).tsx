@@ -49,7 +49,7 @@ export default function Conversations() {
                 <For each={rd()}>
                     {(conv) =>
                         <div class="item-conv">
-                            <A href={`${conv[0]}/chats`}>{conv[1] ? conv[1] : "Untitled"}</A>
+                            <A href={`${conv[0]}`}>{conv[1] ? conv[1] : "Untitled"}</A>
                             <p>Chat count: {conv[2]}</p>
                             <p>Created: {conv[3]}</p>
                             <p>Updated: {conv[4]}</p>

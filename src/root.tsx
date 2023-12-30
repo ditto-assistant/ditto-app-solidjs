@@ -1,6 +1,6 @@
 // @refresh reload
 import { SessionProvider } from "@solid-mediakit/auth/client";
-import { Suspense } from "solid-js";
+import { For, Suspense } from "solid-js";
 import {
   A,
   Body,
@@ -12,6 +12,8 @@ import {
   Routes,
   Scripts,
   Title,
+  useHref,
+  useLocation,
 } from "solid-start";
 import "./root.css";
 
@@ -24,7 +26,6 @@ export default function Root() {
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Body>
-        <A href="/">Home</A>
         <Suspense fallback={<div>Loading...</div>}>
           <SessionProvider>
             <ErrorBoundary >

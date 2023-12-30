@@ -2,6 +2,7 @@ import { RouteDataArgs, useParams, useRouteData } from "solid-start";
 import { createServerAction$, createServerData$ } from "solid-start/server";
 import { For, Show } from "solid-js";
 import { SolidMarkdown } from "solid-markdown";
+import { A } from "solid-start";
 
 type ChatMsgJson = [number, boolean, string, string];
 
@@ -19,7 +20,7 @@ class ChatMessage {
 export function routeData({ params }: RouteDataArgs) {
     return createServerData$(
         async (s) => {
-            const url = `http://localhost:32032/users/${s.user}/conversations/${s.conv}/chats?order=asc&limit=100`
+            const url = `http://localhost:32032/users/${s.user}/conversations/${s.conv}?order=asc&limit=100`
             const rsp = await fetch(url)
             const jason = await rsp.json() as ChatMsgJson[]
             return jason
@@ -39,6 +40,8 @@ export function routeData({ params }: RouteDataArgs) {
 
 export default function Chats() {
     const rd = useRouteData<typeof routeData>();
+    const params = useParams()
+
     const [sending, { Form }] = createServerAction$(async (form: FormData, args) => {
         const message = form.get("message") as string
         const userId = form.get("userId") as string
@@ -56,16 +59,9 @@ export default function Chats() {
         console.log(jason)
         return jason
     })
-    const params = useParams()
-    function ismetaKey(e: MouseEvent) {
-        if (e.metaKey) {
-            console.log("meta key pressed")
-        } else {
-            console.log("meta key not pressed")
-        }
-    }
 
     return <>
+        <A href={`/users/${params.userId}/conversations`}>⬅️ Back to conversations</A>
         <Show when={rd()?.[0]}>
             <div class="chat-container">
                 <For each={rd()}>
@@ -75,8 +71,8 @@ export default function Chats() {
                 </For>
             </div>
             <footer class="footer" >
-                <Form class="chat-input">
-                    <textarea name="message" onKeyDown={(event) => {
+                <Form class="chat-input-form">
+                    <textarea id="chat_input_textarea" name="message" onKeyDown={(event) => {
                         if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
                             console.log("ctrl+enter submit")
                             document.getElementById("chatSubmitButton")?.click()
@@ -84,7 +80,7 @@ export default function Chats() {
                     }} />
                     <input type="hidden" name="userId" value={params.userId} />
                     <input type="hidden" name="convId" value={params.convId} />
-                    <button type="submit" id="chatSubmitButton">Send</button>
+                    <button type="submit" id="chatSubmitButton" >Send</button>
                 </Form>
             </footer>
         </Show >
