@@ -1,12 +1,3 @@
-import solid from "solid-start/vite";
-import { defineConfig } from "vite";
+import { defineConfig } from "@solidjs/start/config";
 
-export default defineConfig({
-  plugins: [solid()],
-  optimizeDeps: { exclude: ["fsevents"] },
-  appType: "custom",
-  base: "/",
-  ssr: {
-    target: "node",
-  },
-});
+export default defineConfig({});

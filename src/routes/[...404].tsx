@@ -1,10 +1,9 @@
-import { Title } from "solid-start";
-import { HttpStatusCode } from "solid-start/server";
+import { HttpStatusCode } from "@solidjs/start";
 
 export default function NotFound() {
   return (
     <main>
-      <Title>Not Found</Title>
+      <title>Not Found</title>
       <HttpStatusCode code={404} />
       <h1>Page Not Found</h1>
       <p>

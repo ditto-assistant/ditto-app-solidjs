@@ -1,6 +1,6 @@
 import { SessionContext, signOut } from "@solid-mediakit/auth/client";
 import { Show, useContext, type VoidComponent } from "solid-js";
-import { A } from "solid-start";
+import { A } from "@solidjs/router";
 
 const Protected: VoidComponent = () => {
   const session = useContext(SessionContext)

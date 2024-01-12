@@ -1,11 +1,11 @@
-import { Outlet, useParams } from "solid-start";
+import { RouteSectionProps, useParams } from "@solidjs/router";
 import { Show, useContext } from "solid-js";
 import { SessionContext } from "@solid-mediakit/auth/client";
-import { A } from "solid-start";
+import { A } from "@solidjs/router";
 import { userId } from "../login";
 import { User } from "@auth/core/types";
 
-export default function UsersLayout() {
+export default function UsersLayout(props: RouteSectionProps) {
     const session = useContext(SessionContext)
     const params = useParams()
     const fbIncorrectUser = (user: User) =>
@@ -32,7 +32,7 @@ export default function UsersLayout() {
                     </header>
                     <br />
 
-                    <Outlet />
+                    {props.children}
                 </>
             )}
         </Show >

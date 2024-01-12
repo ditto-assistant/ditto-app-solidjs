@@ -1,7 +1,7 @@
 import { SessionContext, signIn } from "@solid-mediakit/auth/client";
 import { Show, useContext } from "solid-js";
-import { Navigate, } from "solid-start";
 import { User } from "@auth/core/types";
+import { Navigate } from "@solidjs/router";
 
 export function userId(user: User) {
     return user.email ? user.email : user.id;
